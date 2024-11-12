@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TopBar, ProductList, Cart } from "./components";
 import { loadCartFromLocalStorage } from "./utils/localStorage";
 import { addToCart, removeFromCart } from "./utils/cartActions";
+import getTotalAmount from "./utils/cartCalculations";
 import "./App.css";
 
 const products = [
@@ -116,7 +117,11 @@ const App = () => {
       {!isCartVisible ? (
         <ProductList products={products} addToCart={handleAddToCart} />
       ) : (
-        <Cart cart={cart} removeFromCart={handleRemoveFromCart} />
+        <Cart
+          cart={cart}
+          removeFromCart={handleRemoveFromCart}
+          totalPrice={getTotalAmount(cart)}
+        />
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import { MdDelete } from "react-icons/md";
+import formatPrice from "utils/formatPrice";
 import "./cart.css";
 
 const Cart = ({ cart, removeFromCart, totalPrice }) => {
@@ -20,7 +21,7 @@ const Cart = ({ cart, removeFromCart, totalPrice }) => {
             <div className="cart__product-details">
               <p className="cart__product-name">{item.name}</p>
               <p className="cart__product-price">
-                ${item.price} x {item.quantity}
+                ${formatPrice(item.price)} x {item.quantity}
               </p>
             </div>
             <button
@@ -32,6 +33,9 @@ const Cart = ({ cart, removeFromCart, totalPrice }) => {
           </div>
         ))
       )}
+      <div className="cart__total">
+        <p>Total: ${formatPrice(totalPrice)}</p>
+      </div>
     </div>
   );
 };
