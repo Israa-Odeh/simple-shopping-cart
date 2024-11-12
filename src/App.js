@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { TopBar, ProductList } from "./components";
+import React, { useState, useEffect } from "react";
+import { TopBar, ProductList, Cart} from "./components";
+import { loadCartFromLocalStorage } from "./utils/localStorage";
+import { addToCart } from "./utils/cartActions";
 import "./App.css";
 
 const products = [
@@ -78,7 +80,18 @@ const products = [
 ];
 
 const App = () => {
+  const [cart, setCart] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
+
+  useEffect(() => {
+    const storedCart = loadCartFromLocalStorage();
+    setCart(storedCart);
+  }, []);
+
+  const handleAddToCart = (product) => {
+    const updatedCart = addToCart(cart, product);
+    setCart(updatedCart);
+  };
 
   const showCart = () => {
     setIsCartVisible(true);
@@ -95,7 +108,11 @@ const App = () => {
         isCartVisible={isCartVisible}
         hideCart={hideCart}
       />
-       <ProductList products={products} />
+      {!isCartVisible ? (
+        <ProductList products={products} addToCart={handleAddToCart} />
+      ) : (
+        <Cart cart={cart} />
+      )}
     </div>
   );
 };

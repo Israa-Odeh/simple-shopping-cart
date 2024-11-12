@@ -2,7 +2,7 @@ import { BsCartPlus } from "react-icons/bs";
 import formatPrice from "utils/formatPrice";
 import "./product.css";
 
-const Product = ({ product }) => {
+const Product = ({ product, addToCart }) => {
   return (
     <div className="product">
       <img
@@ -16,7 +16,12 @@ const Product = ({ product }) => {
         <p className="product__name">{product.name}</p>
         <p className="product__price">${formatPrice(product.price)}</p>
       </div>
-      <button className="product__button" type="button" title="Add to Cart">
+      <button
+        className="product__button"
+        type="button"
+        onClick={() => addToCart(product)}
+        title="Add to Cart"
+      >
         <BsCartPlus className="product__button-icon" size={20} />
       </button>
     </div>
