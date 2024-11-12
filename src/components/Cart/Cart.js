@@ -1,7 +1,7 @@
 import { MdDelete } from "react-icons/md";
 import "./cart.css";
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, removeFromCart, totalPrice }) => {
   return (
     <div className="cart">
       <h2 className="cart__title">Your Cart</h2>
@@ -23,6 +23,12 @@ const Cart = ({ cart }) => {
                 ${item.price} x {item.quantity}
               </p>
             </div>
+            <button
+              className="cart__product-button"
+              onClick={() => removeFromCart(item.id)}
+            >
+              <MdDelete size={24} />
+            </button>
           </div>
         ))
       )}

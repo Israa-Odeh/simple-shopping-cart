@@ -15,3 +15,9 @@ export const addToCart = (cart, product) => {
   saveCartToLocalStorage(updatedCart);
   return updatedCart;
 };
+
+export const removeFromCart = (cart, productId) => {
+  const updatedCart = cart.filter((item) => item.id !== productId);
+  saveCartToLocalStorage(updatedCart);
+  return updatedCart;
+};
