@@ -114,6 +114,7 @@ const App = () => {
         isCartVisible={isCartVisible}
         hideCart={hideCart}
       />
+
       {!isCartVisible ? (
         <ProductList products={products} addToCart={handleAddToCart} />
       ) : (
