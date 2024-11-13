@@ -78,3 +78,16 @@
 .cart__checkout-button:hover {
   background-color: rgb(207, 206, 206);
 }
+
+@media screen and (max-width: 768px) {
+  .cart__title {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cart__title,
+  .cart__total-price {
+    font-size: 1rem;
+  }
+}

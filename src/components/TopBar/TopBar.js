@@ -14,7 +14,7 @@ const TopBar = ({ showCart, isCartVisible, hideCart }) => {
           height={64}
           alt="Logo featuring shopping bags, representing the shopping website"
         />
-        <h1 className="topbar__title">Shobeek Lobeek Souq</h1>
+        <h1 className="topbar__title">Souqna</h1>
       </div>
 
       {isCartVisible ? (

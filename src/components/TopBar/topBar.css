@@ -20,7 +20,8 @@
 
 .topbar__title {
   color: #ececec;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
   font-family: "Delius", serif;
 }
 
@@ -46,4 +47,43 @@
 
 .topbar__button-icon {
   color: #ececec;
+}
+
+@media screen and (max-width: 768px) {
+  .topbar__title {
+    font-size: 1.2rem;
+  }
+
+  .topbar__button-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .topbar__logo-container {
+    gap: 12px;
+  }
+
+  .topbar__logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .topbar__title {
+    font-size: 1rem;
+  }
+
+  .topbar__button-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .topbar__button-text {
+    display: none;
+  }
 }

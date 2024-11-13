@@ -4,3 +4,9 @@
   gap: 30px;
   padding: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .product-list {
+    gap: 16px;
+  }
+}
