@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import formatPrice from "utils/formatPrice";
+import CheckoutModal from "../CheckoutModal";
 import "./cart.css";
 
-const Cart = ({ cart, removeFromCart, totalPrice }) => {
+const Cart = ({ cart, removeFromCart, totalPrice, handleCheckout }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
+
   return (
     <div className="cart">
       <h2 className="cart__title">Your Cart</h2>
@@ -34,8 +41,22 @@ const Cart = ({ cart, removeFromCart, totalPrice }) => {
         ))
       )}
       <div className="cart__total">
-        <p>Total: ${formatPrice(totalPrice)}</p>
+        <p className="cart__total-price">Total: ${formatPrice(totalPrice)}</p>
+        {cart.length !== 0 && (
+          <button className="cart__checkout-button" onClick={handleModalOpen}>
+            Checkout
+          </button>
+        )}
       </div>
+
+      {isModalOpen && (
+        <CheckoutModal
+          onClose={handleModalClose}
+          cart={cart}
+          totalPrice={totalPrice}
+          handleCheckout={handleCheckout}
+        />
+      )}
     </div>
   );
 };

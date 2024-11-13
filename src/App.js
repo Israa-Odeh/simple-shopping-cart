@@ -12,7 +12,7 @@ const products = [
     description:
       "Stylish blue denim jacket with a classic fit, featuring button closures and chest pockets.",
     imageUrl: "https://picsum.photos/seed/picsum/200/",
-    price: "59066.99",
+    price: 59066.99,
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const products = [
     description:
       "100% cotton t-shirt, comfortable and breathable, available in sizes S, M, L, XL.",
     imageUrl: "https://picsum.photos/200",
-    price: "19.99",
+    price: 19.99,
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const products = [
     description:
       "High-quality leather boots with durable soles, perfect for outdoor adventures.",
     imageUrl: "https://picsum.photos/200",
-    price: "129.99",
+    price: 129.99,
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const products = [
     description:
       "Water-resistant sports watch with a digital display and heart-rate monitor.",
     imageUrl: "https://picsum.photos/200/",
-    price: "89.99",
+    price: 89.99,
   },
   {
     id: 5,
@@ -44,7 +44,7 @@ const products = [
     description:
       "Water-resistant sports watch with a digital display and heart-rate monitor.",
     imageUrl: "https://picsum.photos/200/",
-    price: "89.99",
+    price: 89.99,
   },
   {
     id: 6,
@@ -52,7 +52,7 @@ const products = [
     description:
       "Water-resistant sports watch with a digital display and heart-rate monitor.",
     imageUrl: "https://picsum.photos/200/",
-    price: "89.99",
+    price: 89.99,
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const products = [
     description:
       "Water-resistant sports watch with a digital display and heart-rate monitor.",
     imageUrl: "https://picsum.photos/200/",
-    price: "89.99",
+    price: 89.99,
   },
   {
     id: 8,
@@ -68,7 +68,7 @@ const products = [
     description:
       "Water-resistant sports watch with a digital display and heart-rate monitor.",
     imageUrl: "https://picsum.photos/200/",
-    price: "89.99",
+    price: 89.99,
   },
   {
     id: 9,
@@ -76,7 +76,7 @@ const products = [
     description:
       "Water-resistant sports watch with a digital display and heart-rate monitor.",
     imageUrl: "https://picsum.photos/200/",
-    price: "89.99",
+    price: 89.99,
   },
 ];
 
@@ -97,6 +97,11 @@ const App = () => {
   const handleRemoveFromCart = (productId) => {
     const updatedCart = removeFromCart(cart, productId);
     setCart(updatedCart);
+  };
+
+  const handleCheckout = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
   };
 
   const showCart = () => {
@@ -122,6 +127,7 @@ const App = () => {
           cart={cart}
           removeFromCart={handleRemoveFromCart}
           totalPrice={getTotalAmount(cart)}
+          handleCheckout={handleCheckout}
         />
       )}
     </div>
