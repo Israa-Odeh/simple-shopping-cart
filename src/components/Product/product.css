@@ -46,6 +46,7 @@
   padding: 8px;
   background-color: #ececec;
   color: rgb(29, 88, 104);
+  cursor: pointer;
 }
 
 .product__button:hover {
