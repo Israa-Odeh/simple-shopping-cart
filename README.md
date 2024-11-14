@@ -1,6 +1,6 @@
 # Souqna
 
-This project implements a simple shopping cart interface that offers a straightforward way for users to view products, add items to the cart, remove items, check the total cost of the items, and complete their purchase by submitting a checkout form with their details.
+This project implements a simple shopping interface that offers a straightforward way for users to view products, add items to the cart, remove items, check the total cost of the items, and complete their purchase by submitting a checkout form with their details.
 
 ## Features
 
