@@ -4,7 +4,7 @@ import "./product.css";
 
 const Product = ({ product, addToCart }) => {
   return (
-    <div className="product">
+    <div className="product" title={product.name}>
       <img
         className="product__image"
         src={product.imageUrl}
