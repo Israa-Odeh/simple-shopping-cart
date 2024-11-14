@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import products from "data/products";
+import { TopBar, ProductList, Cart } from "./components";
+import { loadCartFromLocalStorage } from "./utils/localStorage";
+import { addToCart, removeFromCart } from "./utils/cartActions";
+import getTotalAmount from "./utils/cartCalculations";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [cart, setCart] = useState([]);
+  const [isCartVisible, setIsCartVisible] = useState(false);
+
+  useEffect(() => {
+    const storedCart = loadCartFromLocalStorage();
+    setCart(storedCart);
+  }, []);
+
+  const handleAddToCart = (product) => {
+    const updatedCart = addToCart(cart, product);
+    setCart(updatedCart);
+  };
+
+  const handleRemoveFromCart = (productId) => {
+    const updatedCart = removeFromCart(cart, productId);
+    setCart(updatedCart);
+  };
+
+  const handleCheckout = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
+
+  const showCart = () => setIsCartVisible(true);
+  const hideCart = () => setIsCartVisible(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <TopBar
+        showCart={showCart}
+        isCartVisible={isCartVisible}
+        hideCart={hideCart}
+      />
+
+      {!isCartVisible ? (
+        <ProductList products={products} addToCart={handleAddToCart} />
+      ) : (
+        <Cart
+          cart={cart}
+          removeFromCart={handleRemoveFromCart}
+          totalPrice={getTotalAmount(cart)}
+          handleCheckout={handleCheckout}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;
