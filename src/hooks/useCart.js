@@ -26,7 +26,9 @@ const useCart = () => {
     localStorage.removeItem("cart");
   };
 
-  const getCartItemsCount = () => cart.length;
+  const getCartItemsCount = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
 
   const showCart = () => setIsCartVisible(true);
   const hideCart = () => setIsCartVisible(false);
