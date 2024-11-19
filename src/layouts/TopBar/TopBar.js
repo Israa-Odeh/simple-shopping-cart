@@ -3,7 +3,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import logoUrl from "images/shoppingBags.png";
 import "./topBar.css";
 
-const TopBar = ({ showCart, isCartVisible, hideCart }) => {
+const TopBar = ({ showCart, isCartVisible, hideCart, cartItemsCount }) => {
   return (
     <div className="topbar">
       <div className="topbar__logo-container">
@@ -29,6 +29,9 @@ const TopBar = ({ showCart, isCartVisible, hideCart }) => {
           title="View Cart Details"
         >
           <BsCartCheckFill className="topbar__button-icon" size={32} />
+          {cartItemsCount > 0 && (
+            <span className="topbar__cart-item-count">{cartItemsCount}</span>
+          )}
         </button>
       )}
     </div>

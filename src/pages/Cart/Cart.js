@@ -1,14 +1,29 @@
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import formatPrice from "utils/formatPrice";
-import CheckoutModal from "../CheckoutModal";
+import { CheckoutModal } from "./components";
+import { ConfirmationDialog } from "components";
 import "./cart.css";
 
 const Cart = ({ cart, removeFromCart, totalPrice, handleCheckout }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleModalClose = () => setIsModalOpen(false);
   const handleModalOpen = () => setIsModalOpen(true);
+
+  const handleDelete = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmation(false);
+  };
+
+  const handleConfirmDelete = (productId) => {
+    removeFromCart(productId);
+    setShowConfirmation(false);
+  };
 
   return (
     <div className="cart">
@@ -33,10 +48,20 @@ const Cart = ({ cart, removeFromCart, totalPrice, handleCheckout }) => {
             </div>
             <button
               className="cart__product-button"
-              onClick={() => removeFromCart(item.id)}
+              type="button"
+              onClick={handleDelete}
             >
               <MdDelete size={24} />
             </button>
+
+            {showConfirmation && (
+              <ConfirmationDialog
+                title="Product Removal"
+                message="Are you sure you want to delete this product from your cart?"
+                onConfirm={() => handleConfirmDelete(item.id)}
+                onCancel={handleCancelDelete}
+              />
+            )}
           </div>
         ))
       )}
