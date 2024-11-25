@@ -1,5 +1,5 @@
 import { MdClose } from "react-icons/md";
-import CheckoutForm from "../CheckoutForm";
+import { CheckoutForm } from "containers";
 import "./checkoutModal.css";
 
 const CheckoutModal = ({ onClose, cart, totalPrice, handleCheckout }) => {

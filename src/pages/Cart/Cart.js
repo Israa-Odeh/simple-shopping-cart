@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import formatPrice from "utils/formatPrice";
-import { CheckoutModal } from "./components";
-import { ConfirmationDialog } from "components";
+import { ConfirmationDialog, CheckoutModal } from "components";
 import "./cart.css";
 
 const Cart = ({ cart, removeFromCart, totalPrice, handleCheckout }) => {

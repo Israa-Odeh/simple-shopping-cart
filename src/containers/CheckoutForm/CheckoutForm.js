@@ -6,15 +6,21 @@ const CheckoutForm = ({ cart, totalPrice, handleCheckoutSubmit }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const formatCartData = (cart) => {
-    return cart
-      .map((item) => {
-        return `Product ID: ${item.id}\nName: ${item.name}\nDescription: ${
-          item.description
-        }\nPrice: $${formatPrice(item.price)}\nQuantity: (x${item.quantity})`;
-      })
-      .join("\n\n");
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const formattedCartItems = cart
+    .map((item) => {
+      return `Product ID: ${item.id}\nName: ${item.name}\nDescription: ${
+        item.description
+      }\nPrice: $${formatPrice(item.price)}\nQuantity: (x${item.quantity})`;
+    })
+    .join("\n\n");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +28,7 @@ const CheckoutForm = ({ cart, totalPrice, handleCheckoutSubmit }) => {
     const formData = {
       name,
       email,
-      cart: formatCartData(cart),
+      cart: formattedCartItems,
       totalPrice: `$${formatPrice(totalPrice)}`,
       access_key: "e3c23478-56f7-40ba-beb6-e151f0f93564",
     };
@@ -69,7 +75,7 @@ const CheckoutForm = ({ cart, totalPrice, handleCheckoutSubmit }) => {
         className="checkout-form__input"
         required
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleNameChange}
       />
       <input
         type="email"
@@ -78,7 +84,7 @@ const CheckoutForm = ({ cart, totalPrice, handleCheckoutSubmit }) => {
         className="checkout-form__input"
         required
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleEmailChange}
       />
       <button className="checkout-form__button" type="submit">
         Submit
