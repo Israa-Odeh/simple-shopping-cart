@@ -10,22 +10,24 @@ const Cart = () => {
   const { cart, handleRemoveFromCart, handleCheckout } = useCartContext();
   const totalPrice = getTotalAmount(cart);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   const handleModalClose = () => setIsModalOpen(false);
   const handleModalOpen = () => setIsModalOpen(true);
 
-  const handleDelete = () => {
-    setShowConfirmation(true);
+  const handleDelete = (productId) => {
+    setSelectedProductId(productId);
   };
 
   const handleCancelDelete = () => {
-    setShowConfirmation(false);
+    setSelectedProductId(null);
   };
 
-  const handleConfirmDelete = (productId) => {
-    handleRemoveFromCart(productId);
-    setShowConfirmation(false);
+  const handleConfirmDelete = () => {
+    if (selectedProductId) {
+      handleRemoveFromCart(selectedProductId);
+      setSelectedProductId(null);
+    }
   };
 
   return (
@@ -52,16 +54,16 @@ const Cart = () => {
             <button
               className="cart__product-button"
               type="button"
-              onClick={handleDelete}
+              onClick={() => handleDelete(item.id)}
             >
               <MdDelete size={24} />
             </button>
 
-            {showConfirmation && (
+            {selectedProductId === item.id && (
               <ConfirmationDialog
                 title="Product Removal"
                 message="Are you sure you want to delete this product from your cart?"
-                onConfirm={() => handleConfirmDelete(item.id)}
+                onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
               />
             )}
