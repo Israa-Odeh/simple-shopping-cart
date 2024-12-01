@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCartContext } from "contexts/CartContext";
+import AppShellLayout from "layouts/AppShellLayout";
+import products from "data/products";
+import { ProductList, Cart } from "pages";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const { isCartVisible } = useCartContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppShellLayout>
+      {!isCartVisible ? <ProductList products={products} /> : <Cart />}
+    </AppShellLayout>
   );
-}
+};
 
 export default App;
