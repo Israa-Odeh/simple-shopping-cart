@@ -1,10 +1,14 @@
+import { useCartContext } from "contexts/CartContext";
+import getTotalAmount from "utils/cartCalculations";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import formatPrice from "utils/formatPrice";
 import { ConfirmationDialog, CheckoutModal } from "components";
 import "./cart.css";
 
-const Cart = ({ cart, removeFromCart, totalPrice, handleCheckout }) => {
+const Cart = () => {
+  const { cart, handleRemoveFromCart, handleCheckout } = useCartContext();
+  const totalPrice = getTotalAmount(cart);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -20,7 +24,7 @@ const Cart = ({ cart, removeFromCart, totalPrice, handleCheckout }) => {
   };
 
   const handleConfirmDelete = (productId) => {
-    removeFromCart(productId);
+    handleRemoveFromCart(productId);
     setShowConfirmation(false);
   };
 

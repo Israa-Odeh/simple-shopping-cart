@@ -1,9 +1,11 @@
+import { useCartContext } from "contexts/CartContext";
 import { BsCartCheckFill } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
 import logoUrl from "images/shoppingBags.png";
 import "./topBar.css";
 
-const TopBar = ({ showCart, isCartVisible, hideCart, cartItemsCount }) => {
+const TopBar = () => {
+  const { isCartVisible, showCart, hideCart, itemsCount } = useCartContext();
   return (
     <div className="topbar">
       <div className="topbar__logo-container">
@@ -29,8 +31,8 @@ const TopBar = ({ showCart, isCartVisible, hideCart, cartItemsCount }) => {
           title="View Cart Details"
         >
           <BsCartCheckFill className="topbar__button-icon" size={32} />
-          {cartItemsCount > 0 && (
-            <span className="topbar__cart-item-count">{cartItemsCount}</span>
+          {itemsCount > 0 && (
+            <span className="topbar__cart-item-count">{itemsCount}</span>
           )}
         </button>
       )}

@@ -1,8 +1,10 @@
+import { useCartContext } from "contexts/CartContext";
 import { BsCartPlus } from "react-icons/bs";
 import formatPrice from "utils/formatPrice";
 import "./product.css";
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product }) => {
+  const { handleAddToCart } = useCartContext();
   return (
     <div className="product" title={product.name}>
       <img
@@ -19,7 +21,7 @@ const Product = ({ product, addToCart }) => {
       <button
         className="product__button"
         type="button"
-        onClick={() => addToCart(product)}
+        onClick={() => handleAddToCart(product)}
         title="Add to Cart"
       >
         <BsCartPlus className="product__button-icon" size={20} />
